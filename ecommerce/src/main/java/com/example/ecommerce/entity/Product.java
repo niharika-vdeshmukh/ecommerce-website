@@ -31,7 +31,7 @@ public class Product {
     private boolean active;
 
     @Column
-    private int unitInStock;
+    private int unitsInStock;
 
     @Column
     @CreationTimestamp
