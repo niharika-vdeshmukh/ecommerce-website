@@ -1,6 +1,9 @@
 package com.example.ecommerce.entity;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import jakarta.persistence.*;
+import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -9,6 +12,8 @@ import java.util.Date;
 
 @Entity
 @Table(name="product")
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
+@Data
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,6 +22,9 @@ public class Product {
 
     @Column
     private String sku;
+
+    @Column
+    private String name;
 
     @Column
     private String description;
