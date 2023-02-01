@@ -14,6 +14,13 @@ export class ProductListComponent implements OnInit {
   currentCategoryId: number=1;
   searchMode: boolean = false;
 
+  thePageNumber: number = 1;
+  thePageSize: number = 10;
+  theTotalElements: number = 0;
+  previousCategoryId: number=1;
+
+  previousKeyWord: string = "";
+
   constructor(private productService: ProductService,
               private route: ActivatedRoute) { }
 
@@ -29,10 +36,14 @@ export class ProductListComponent implements OnInit {
 
   handleSearchProducts() {
     const theKeyword: string =  this.route.snapshot.paramMap.get('keyword')!;
-    this.productService.searchProducts(theKeyword).subscribe(
-      data => {
-        this.products = data;
-      }
+    if(this.previousKeyWord == theKeyword) {
+      this.thePageNumber=1;
+    }
+    this.previousKeyWord = theKeyword;
+    this.productService.searchProductPaginate(this.thePageNumber-1,
+                                              this.thePageSize,
+                                              theKeyword).subscribe(
+      this.processResult()
     );
   }
 
@@ -48,11 +59,32 @@ export class ProductListComponent implements OnInit {
       this.currentCategoryId = 1;
     }
 
-    this.productService.getProductList(this.currentCategoryId).subscribe(
-      data => {
-        this.products = data;
-      }
+    if(this.previousCategoryId != this.currentCategoryId) {
+      this.thePageNumber = 1;
+    }
+
+    this.previousCategoryId = this.currentCategoryId;
+
+    this.productService.getProductListPaginate( this.thePageNumber-1, 
+                                                this.thePageSize, 
+                                                this.currentCategoryId).subscribe(
+      this.processResult()
     )
+  }
+
+  updatePageSize(pageSize: string) {
+      this.thePageSize = +pageSize;
+      this.thePageNumber =1;
+      this.listProducts();
+  }
+
+  processResult() {
+    return (data:any) => {
+      this.products = data._embedded.product;
+      this.thePageNumber = data.page.number+1;
+      this.thePageSize = data.page.size;
+      this.theTotalElements = data.page.totalElements;
+    }
   }
 
 }
