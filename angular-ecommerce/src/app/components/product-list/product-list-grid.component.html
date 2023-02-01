@@ -3,13 +3,21 @@
         <div class="container-fluid">
             <div class="row">
                 <div *ngFor="let tempProduct of products" class="col-md-3">
+                    
                     <div class="product-box">
                         <img src="{{tempProduct.image_url}}" class="image-responsive">
                         <h1>{{tempProduct.name}}</h1>
                         <div class="price">{{tempProduct.unit_price | currency : 'USD'}}</div>
                         <a href="#" class="primary-btn">Add to Cart</a>
                     </div>
+
                 </div>
+
+                <!-- If products are empty -->
+                <div *ngIf ="products?.length==0" class="alert alert-warning col-md-12" role="alert">
+                    No Products Found
+                </div>
+
             </div>
         </div>
     </div>
