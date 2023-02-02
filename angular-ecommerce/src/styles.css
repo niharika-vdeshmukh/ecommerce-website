@@ -284,11 +284,11 @@ input.au-input.au-input-xl{
     right:0;
     min-width:95px;
     color:#fff;
-    border:1px solid #205b8d;
+    border:1px solid #9575ac;
     -webkit-border-radius:3px;
     -moz-border-radius:3px;
     border-radius:43px;
-    background:#205b8d
+    background:#9575ac
 }
 
 .au-btn-submit:hover{
@@ -515,7 +515,7 @@ input.au-input.au-input-xl{
     background:#fff
 }
 .main-content.page-m{
-    padding:10% 15%!important
+    padding:10% 30% 10% 5%
 }
 
 /* 
@@ -737,7 +737,7 @@ table.table.table-bordered th{
 
  .btn-info{
     color:#fff;
-    background-color:#62486d!important;
+    background-color:#9575ac!important;
     border-color:#413049!important
 }
 a.primary-btn{
@@ -826,7 +826,7 @@ footer ul li{
         font-size:22px;
         float:left;
         margin-top:16px;
-        color:#205b8d;
+        color:#9575ac;
         margin-left:15px
     }
     .header-mobile .header-mobile-bar{
@@ -921,7 +921,7 @@ footer ul li{
         font-size:22px;
         float:left;
         margin-top:16px;
-        color:#205b8d;
+        color:#9575ac;
         margin-left:15px
     }
         .header-wrap2{
@@ -972,7 +972,7 @@ footer ul li{
         font-size:22px;
         float:left;
         margin-top:16px;
-        color:#205b8d;
+        color:#9575ac;
         margin-left:15px
     }
     .footer-pagination{
@@ -991,11 +991,11 @@ footer ul li{
         right:10px;
         min-width:85px;
         color:#fff;
-        border:1px solid #205b8d;
+        border:1px solid #684488;
         -webkit-border-radius:3px;
         -moz-border-radius:3px;
         border-radius:0;
-        background:#205b8d
+        background:#9575ac
     }
     input.au-input.au-input-xl{
         border-radius:0!important;
@@ -1011,7 +1011,7 @@ footer ul li{
         font-size:18px;
         float:left;
         margin-top:16px;
-        color:#03a9f4;
+        color:#684488;
         margin-left:15px
     }
     .total span{
@@ -1024,11 +1024,11 @@ footer ul li{
         margin-left:6px
     }
     .total{
-        background:#205b8d;
+        background:#9575ac;
         line-height:30px;
         color:#fff;
         border-radius:30px;
-        border:1px solid #205b8d;
+        border:1px solid #9575ac;
         float:left;
         margin-top:9px;
         padding-left:12px
