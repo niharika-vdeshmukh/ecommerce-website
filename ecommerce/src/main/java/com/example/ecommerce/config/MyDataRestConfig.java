@@ -1,7 +1,9 @@
 package com.example.ecommerce.config;
 
+import com.example.ecommerce.entity.Country;
 import com.example.ecommerce.entity.Product;
 import com.example.ecommerce.entity.ProductCategory;
+import com.example.ecommerce.entity.State;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.metamodel.EntityType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,17 +27,18 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
     @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors) {
         HttpMethod[] theUnsupportedMethods = {HttpMethod.DELETE, HttpMethod.PUT, HttpMethod.POST};
-        config.getExposureConfiguration()
-                .forDomainType(Product.class)
-                .withItemExposure((metdata, httpMethods)-> httpMethods.disable(theUnsupportedMethods))
-                .withCollectionExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupportedMethods));
+        disableHTTPMethods(ProductCategory.class, config, theUnsupportedMethods);
+        disableHTTPMethods(State.class, config, theUnsupportedMethods);
+        disableHTTPMethods(Country.class, config, theUnsupportedMethods);
 
+        exposeIds(config);
+    }
+
+    private static void disableHTTPMethods(Class T, RepositoryRestConfiguration config, HttpMethod[] theUnsupportedMethods) {
         config.getExposureConfiguration()
-                .forDomainType(ProductCategory.class)
+                .forDomainType(T)
                 .withItemExposure((metdata, httpMethods)-> httpMethods.disable(theUnsupportedMethods))
                 .withCollectionExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupportedMethods));
-        
-        exposeIds(config);
     }
 
     private void exposeIds(RepositoryRestConfiguration config) {
